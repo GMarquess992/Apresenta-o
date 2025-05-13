@@ -1932,6 +1932,104 @@
     .input-field::placeholder {
       color: rgba(255, 255, 255, 0.5);
     }
+    /* Estilo para os campos de input personalizados */
+.percentage-input,
+.fixed-value-input {
+  padding: 0 15px;
+  background-color: rgba(255, 255, 255, 0.05);
+  color: white;
+  width: 100%;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  height: 45px;
+  font-size: 1rem;
+  -webkit-appearance: textfield;
+  -moz-appearance: textfield;
+  appearance: textfield;
+}
+
+/* Estilo do campo com prefixo */
+.fixed-value-input {
+  padding-left: 35px;
+}
+
+/* Estilo do campo com sufixo */
+.percentage-input {
+  padding-right: 30px;
+}
+
+/* Completamente remover as setas do navegador em todos os navegadores */
+.percentage-input::-webkit-outer-spin-button,
+.percentage-input::-webkit-inner-spin-button,
+.fixed-value-input::-webkit-outer-spin-button,
+.fixed-value-input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  appearance: none;
+  margin: 0;
+  display: none;
+}
+
+/* Estilo para o input suffix */
+.input-suffix {
+  position: absolute;
+  right: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: rgba(255, 255, 255, 0.8);
+  z-index: 2;
+  pointer-events: none;
+}
+
+/* Estilos específicos para a seção de savings */
+.savings-section {
+  background: rgba(58, 134, 255, 0.1);
+  border-radius: 12px;
+  padding: 12px;
+  margin-top: 5px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.savings-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 5px 10px;
+}
+
+.savings-title {
+  font-size: 1.1rem;
+  color: #ffffff;
+  text-align: left;
+  padding-right: 20px;
+  font-weight: 500;
+}
+
+.savings-value {
+  font-size: 1.2rem;
+  color: #3fea90;
+  font-weight: 700;
+}
+
+.red-value {
+  font-size: 1.2rem;
+  color: #ff6b6b;
+  font-weight: 700;
+}
+
+.white-value {
+  color: #ffffff;
+}
+
+/* Estilos para os ícones de check e cross */
+.advantage-icon.check {
+  color: #3fea90;
+}
+
+.advantage-icon.cross {
+  color: #ff6b6b;
+}
   </style>
 </head>
 <body>
@@ -3647,207 +3745,170 @@
 
   <!-- SLIDE 8: Calculadora Comparativa -->
   <div class="slide" id="slide8">
-    <div class="navigation">
-      <img src="logo.png" alt="GMS Consultoria" class="nav-logo">
+  <div class="navigation">
+    <img src="logo.png" alt="GMS Consultoria" class="nav-logo">
+    
+    <div class="slide-indicator">
+      <div class="indicator" data-slide="1"></div>
+      <div class="indicator" data-slide="2"></div>
+      <div class="indicator" data-slide="3"></div>
+      <div class="indicator" data-slide="4"></div>
+      <div class="indicator" data-slide="5"></div>
+      <div class="indicator" data-slide="6"></div>
+      <div class="indicator" data-slide="7"></div>
+      <div class="indicator active" data-slide="8"></div>
+    </div>
+  </div>
+
+  <div class="calculator-section">
+    <h3 class="input-title">Simule os custos de acordo com seu patrimônio</h3>
+    
+    <div class="input-container">
+      <div class="input-wrapper fixed-value-wrapper" style="width: 90px; max-width: 40%; margin-right: 10px;">
+        <span class="input-prefix">R$</span>
+        <input type="number" id="valor-fixo" class="input-field fixed-value-input" value="300" min="150" max="1000" step="50" tabindex="0">
+      </div>
       
-      <div class="slide-indicator">
-        <div class="indicator" data-slide="1"></div>
-        <div class="indicator" data-slide="2"></div>
-        <div class="indicator" data-slide="3"></div>
-        <div class="indicator" data-slide="4"></div>
-        <div class="indicator" data-slide="5"></div>
-        <div class="indicator" data-slide="6"></div>
-        <div class="indicator" data-slide="7"></div>
+      <div class="input-wrapper percentage-wrapper" style="width: 70px; max-width: 40%;">
+        <input type="number" id="taxa-percentual" class="input-field percentage-input" value="1.0" min="0.5" max="1.0" step="0.1" tabindex="0">
+        <span class="input-suffix">%</span>
       </div>
     </div>
 
-    <div class="calculator-section">
-      <h3 class="input-title">Simule os custos de acordo com seu patrimônio</h3>
-      
-      <div class="input-container">
-        <div class="input-wrapper" style="width: 300px; max-width: 50%;">
-          <span class="input-prefix">R$</span>
-          <input type="text" id="patrimonio" class="input-field" value="" placeholder="Patrimônio investido">
-        </div>
-      </div>
-
-      <div class="calculator-container">
-        <div class="comparison-section">
-          <div class="model-card highlighted">
-            <div class="model-header">
-              <div class="model-icon">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
-                  <path d="M2 17l10 5 10-5"></path>
-                  <path d="M2 12l10 5 10-5"></path>
-                </svg>
-              </div>
-              <h3 class="model-title">GMS Consultoria (Fee-Based)</h3>
+    <div class="calculator-container">
+      <div class="comparison-section">
+        <div class="model-card highlighted">
+          <div class="model-header">
+            <div class="model-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
+                <path d="M2 17l10 5 10-5"></path>
+                <path d="M2 12l10 5 10-5"></path>
+              </svg>
             </div>
-            
-            <div class="fee-info">
-              <div class="fee-row">
-                <span class="fee-label">Taxa Fixa Mínima (Mensal)</span>
-                <span class="fee-value">R$ 200,00</span>
-              </div>
-              <div class="fee-row">
-                <span class="fee-label">Taxa Sobre Patrimônio (Anual)</span>
-                <span class="fee-value">1,00%</span>
-              </div>
-              <div class="fee-row">
-                <span class="fee-label">Valor Calculado (Mensal)</span>
-                <span class="fee-value" id="feeBasedMonthly">R$ 250,00</span>
-              </div>
-              <div class="total-row">
-                <span class="total-label">Custo Total Anual</span>
-                <span class="total-value" id="feeBasedAnnual">R$ 3.000,00</span>
-              </div>
-            </div>
-            
-            <div class="model-advantages">
-              <h4 class="advantage-title">Vantagens do Modelo Fee-Based</h4>
-              <ul class="advantage-list">
-                <li class="advantage-item">
-                  <span class="advantage-icon">✓</span>
-                  <span>Total transparência - você sabe exatamente quanto paga</span>
-                </li>
-                <li class="advantage-item">
-                  <span class="advantage-icon">✓</span>
-                  <span>Alinhamento de interesses - nosso objetivo é fazer seu patrimônio crescer</span>
-                </li>
-                <li class="advantage-item">
-                  <span class="advantage-icon">✓</span>
-                  <span>Sem conflitos de interesse ou recomendações baseadas em comissões</span>
-                </li>
-                <li class="advantage-item">
-                  <span class="advantage-icon">✓</span>
-                  <span>Consultoria imparcial focada exclusivamente nos seus objetivos financeiros</span>
-                </li>
-              </ul>
-            </div>
+            <h3 class="model-title">GMS Consultoria (Fee-Based)</h3>
           </div>
           
-          <div class="model-card">
-            <div class="model-header">
-              <div class="model-icon">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
-                  <line x1="8" y1="21" x2="16" y2="21"></line>
-                  <line x1="12" y1="17" x2="12" y2="21"></line>
-                </svg>
-              </div>
-              <h3 class="model-title">Modelo Tradicional (Comissões)</h3>
-            </div>
-            
-            <div class="fee-info">
-              <div class="fee-row">
-                <span class="fee-label">Remuneração Via Rebate (Anual)</span>
-                <span class="fee-value">1,50% - 2,50%</span>
-              </div>
-              <div class="fee-row">
-                <span class="fee-label">Custo de Oportunidade (Anual)</span>
-                <span class="fee-value" id="opportunityCost">R$ 1.200,00</span>
-              </div>
-              <div class="fee-row">
-                <span class="fee-label">Taxa Embutida (Mensal)</span>
-                <span class="fee-value" id="commissionMonthly">R$ 500,00</span>
-              </div>
-              <div class="total-row">
-                <span class="total-label">Custo Total Anual (Estimado)</span>
-                <span class="total-value" id="commissionAnnual">R$ 6.000,00</span>
-              </div>
-            </div>
-            
-            <div class="model-advantages">
-              <h4 class="advantage-title">Desvantagens do Modelo de Comissões</h4>
-              <ul class="advantage-list">
-                <li class="advantage-item">
-                  <span class="advantage-icon">✗</span>
-                  <span>Custos ocultos - embutidos em produtos financeiros, difíceis de rastrear</span>
-                </li>
-                <li class="advantage-item">
-                  <span class="advantage-icon">✗</span>
-                  <span>Potencial rotatividade excessiva de produtos para gerar mais comissões</span>
-                </li>
-                <li class="advantage-item">
-                  <span class="advantage-icon">✗</span>
-                  <span>Maior custo efetivo total, geralmente 50-100% mais caro que o modelo fee-based</span>
-                </li>
-                <li class="advantage-item">
-                  <span class="advantage-icon">✗</span>
-                  <span>Perda de rendimento (custo de oportunidade) devido a escolhas tendenciosas de produtos</span>
-                </li>
-              </ul>
-            </div>
-          </div>
-          
-          <div class="model-card">
-            <div class="model-header">
-              <div class="model-icon">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M3 3v18h18"></path>
-                  <path d="M18.5 3a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5z"></path>
-                  <path d="M13.5 8a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5z"></path>
-                  <path d="M8.5 14a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5z"></path>
-                </svg>
-              </div>
-              <h3 class="model-title">Modelo Bancário</h3>
-            </div>
-            
-            <div class="fee-info">
-              <div class="fee-row">
-                <span class="fee-label">Taxas de Administração</span>
-                <span class="fee-value">Elevadas</span>
-              </div>
-              <div class="fee-row">
-                <span class="fee-label">Taxas de Performance</span>
-                <span class="fee-value">Frequentes</span>
-              </div>
-              <div class="fee-row">
-                <span class="fee-label">Custos Operacionais</span>
-                <span class="fee-value">Embutidos</span>
-              </div>
-              <div class="total-row">
-                <span class="total-label">Estrutura de Custos</span>
-                <span class="total-value">Complexa</span>
-              </div>
-            </div>
-            
-            <div class="model-advantages">
-              <h4 class="advantage-title">Desvantagens do Modelo Bancário</h4>
-              <ul class="advantage-list">
-                <li class="advantage-item">
-                  <span class="advantage-icon">✗</span>
-                  <span>Oferta limitada de produtos - somente da "prateleira" do próprio banco</span>
-                </li>
-                <li class="advantage-item">
-                  <span class="advantage-icon">✗</span>
-                  <span>Priorização de produtos proprietários com maiores margens para o banco</span>
-                </li>
-                <li class="advantage-item">
-                  <span class="advantage-icon">✗</span>
-                  <span>Gerentes com metas de vendas, não alinhados com seus objetivos financeiros</span>
-                </li>
-                <li class="advantage-item">
-                  <span class="advantage-icon">✗</span>
-                  <span>Estratégias padronizadas, sem personalização genuína para seu perfil individual</span>
-                </li>
-                <li class="advantage-item">
-                  <span class="advantage-icon">✗</span>
-                  <span>Múltiplas camadas de taxas frequentemente não transparentes</span>
-                </li>
-              </ul>
-            </div>
+          <div class="model-advantages">
+            <h4 class="advantage-title">Vantagens do Modelo Fee-Based</h4>
+            <ul class="advantage-list">
+              <li class="advantage-item">
+                <span class="advantage-icon check">✓</span>
+                <span>Total transparência - você sabe exatamente quanto paga</span>
+              </li>
+              <li class="advantage-item">
+                <span class="advantage-icon check">✓</span>
+                <span>Alinhamento de interesses - nosso objetivo é fazer seu patrimônio crescer</span>
+              </li>
+              <li class="advantage-item">
+                <span class="advantage-icon check">✓</span>
+                <span>Sem conflitos de interesse ou recomendações baseadas em comissões</span>
+              </li>
+              <li class="advantage-item">
+                <span class="advantage-icon check">✓</span>
+                <span>Consultoria imparcial focada exclusivamente nos seus objetivos financeiros</span>
+              </li>
+            </ul>
           </div>
         </div>
         
-        <div class="savings-section">
-          <h3 class="savings-title">Sua economia anual com o modelo GMS Consultoria:</h3>
+        <div class="model-card">
+          <div class="model-header">
+            <div class="model-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+                <line x1="8" y1="21" x2="16" y2="21"></line>
+                <line x1="12" y1="17" x2="12" y2="21"></line>
+              </svg>
+            </div>
+            <h3 class="model-title">Modelo Tradicional (Comissões)</h3>
+          </div>
+          
+          <div class="model-advantages">
+            <h4 class="advantage-title">Desvantagens do Modelo de Comissões</h4>
+            <ul class="advantage-list">
+              <li class="advantage-item">
+                <span class="advantage-icon cross">✗</span>
+                <span>Custos ocultos - embutidos em produtos financeiros, difíceis de rastrear</span>
+              </li>
+              <li class="advantage-item">
+                <span class="advantage-icon cross">✗</span>
+                <span>Potencial rotatividade excessiva de produtos para gerar mais comissões</span>
+              </li>
+              <li class="advantage-item">
+                <span class="advantage-icon cross">✗</span>
+                <span>Maior custo efetivo total, geralmente 50-100% mais caro que o modelo fee-based</span>
+              </li>
+              <li class="advantage-item">
+                <span class="advantage-icon cross">✗</span>
+                <span>Perda de rendimento (custo de oportunidade) devido a escolhas tendenciosas de produtos</span>
+              </li>
+              <li class="advantage-item">
+                <span class="advantage-icon cross">✗</span>
+                <span>Remuneração Via Rebate 1,50% - 2,50%</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+        
+        <div class="model-card">
+          <div class="model-header">
+            <div class="model-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M3 3v18h18"></path>
+                <path d="M18.5 3a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5z"></path>
+                <path d="M13.5 8a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5z"></path>
+                <path d="M8.5 14a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5z"></path>
+              </svg>
+            </div>
+            <h3 class="model-title">Modelo Bancário</h3>
+          </div>
+          
+          <div class="model-advantages">
+            <h4 class="advantage-title">Desvantagens do Modelo Bancário</h4>
+            <ul class="advantage-list">
+              <li class="advantage-item">
+                <span class="advantage-icon cross">✗</span>
+                <span>Oferta limitada de produtos - somente da "prateleira" do próprio banco</span>
+              </li>
+              <li class="advantage-item">
+                <span class="advantage-icon cross">✗</span>
+                <span>Priorização de produtos proprietários com maiores margens para o banco</span>
+              </li>
+              <li class="advantage-item">
+                <span class="advantage-icon cross">✗</span>
+                <span>Gerentes com metas de vendas, não alinhados com seus objetivos financeiros</span>
+              </li>
+              <li class="advantage-item">
+                <span class="advantage-icon cross">✗</span>
+                <span>Estratégias padronizadas, sem personalização genuína para seu perfil individual</span>
+              </li>
+              <li class="advantage-item">
+                <span class="advantage-icon cross">✗</span>
+                <span>Múltiplas camadas de taxas frequentemente não transparentes</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      
+      <div class="savings-section">
+        <div class="savings-row">
+          <h3 class="savings-title">Valor base:</h3>
+          <span class="savings-value white-value" id="valorBaseValue">R$ 500,00</span>
+        </div>
+        <div class="savings-row">
+          <h3 class="savings-title">Valor a cada mil reais:(Consultoria)</h3>
           <span class="savings-value" id="savingsValue">R$ 3.000,00</span>
+        </div>
+        <div class="savings-row">
+          <h3 class="savings-title">Valor a cada mil reais:(Assessoria)</h3>
+          <span class="savings-value red-value">R$ 15,00</span>
         </div>
       </div>
     </div>
   </div>
+</div>
   
   <script>
     // #CONFIGURAÇÕES GERAIS DE NAVEGAÇÃO ENTRE SLIDES
@@ -4445,55 +4506,103 @@
       });
       
       // FUNCIONALIDADE DO SLIDE 8 - Calculadora
-      function formatCurrency(value) {
-        return new Intl.NumberFormat('pt-BR', {
-          style: 'currency',
-          currency: 'BRL',
-          minimumFractionDigits: 2
-        }).format(value);
+      // Formatador de valores monetários
+function formatCurrency(value) {
+  return new Intl.NumberFormat('pt-BR', {
+    style: 'currency',
+    currency: 'BRL',
+    minimumFractionDigits: 2
+  }).format(value);
+}
+
+// Função para calcular o valor a cada mil reais
+function calcularValorVariavel() {
+  // Valor base fixo de R$1.000
+  const valorBase = 1000;
+  
+  // Obtém a taxa percentual
+  const taxaPercentualInput = document.getElementById('taxa-percentual');
+  const taxaPercentualValor = parseFloat(taxaPercentualInput.value) / 100;
+  
+  // Calcula o valor a cada mil reais: 1000 * taxa / 12 (valor mensal)
+  const valorPorMil = (valorBase * taxaPercentualValor) / 12;
+  
+  // Atualiza o valor na tela
+  const savingsElement = document.getElementById('savingsValue');
+  savingsElement.textContent = formatCurrency(valorPorMil);
+  
+  // Define a cor com base no valor (mantemos verde para consistência visual)
+  savingsElement.style.color = '#3fea90';
+}
+
+// Função para calcular o valor base
+function calcularValorBase() {
+  // Obtém o valor fixo
+  const valorFixoInput = document.getElementById('valor-fixo');
+  const valorFixo = parseInt(valorFixoInput.value) || 0;
+  
+  // Obtém a taxa percentual
+  const taxaPercentualInput = document.getElementById('taxa-percentual');
+  const taxaPercentualValor = parseFloat(taxaPercentualInput.value) / 100;
+  
+  // Verifica se a porcentagem é maior que zero para evitar divisão por zero
+  if (taxaPercentualValor > 0) {
+    // Calcula o valor base: valor fixo ÷ porcentagem × 12
+    const valorBase = (valorFixo / taxaPercentualValor) * 12;
+    
+    // Atualiza o valor na tela
+    const valorBaseElement = document.getElementById('valorBaseValue');
+    valorBaseElement.textContent = formatCurrency(valorBase);
+  }
+}
+
+// Configurar eventos após a página estar totalmente carregada
+window.addEventListener('DOMContentLoaded', function() {
+  // Configuração para o campo de porcentagem
+  const taxaPercentual = document.getElementById('taxa-percentual');
+  if (taxaPercentual) {
+    taxaPercentual.addEventListener('keydown', function(e) {
+      // Permitir apenas as teclas de seta, tab, etc.
+      if (e.key !== 'ArrowUp' && e.key !== 'ArrowDown' && 
+          e.key !== 'Tab' && e.key !== 'Enter') {
+        e.preventDefault();
       }
-      
-      function calculateFees() {
-        const patrimonioInput = document.getElementById('patrimonio');
-        let patrimonio = parseFloat(patrimonioInput.value.replace(/[^\d.-]/g, ''));
-        
-        if (isNaN(patrimonio)) {
-          patrimonio = 0;
-        }
-        
-        const taxaMinimaMensal = 200;
-        const taxaAnual = 0.01;
-        
-        const valorMensalCalculado = (patrimonio * taxaAnual) / 12;
-        const valorMensalFinal = Math.max(taxaMinimaMensal, valorMensalCalculado);
-        const valorAnualFinal = valorMensalFinal * 12;
-        
-        const comissaoAnual = 0.02;
-        const custoOportunidadeAnual = patrimonio * 0.01;
-        const valorMensalComissao = (patrimonio * comissaoAnual) / 12;
-        const valorAnualComissao = (valorMensalComissao * 12) + custoOportunidadeAnual;
-        
-        const economiaAnual = valorAnualComissao - valorAnualFinal;
-        
-        document.getElementById('feeBasedMonthly').textContent = formatCurrency(valorMensalFinal);
-        document.getElementById('feeBasedAnnual').textContent = formatCurrency(valorAnualFinal);
-        document.getElementById('opportunityCost').textContent = formatCurrency(custoOportunidadeAnual);
-        document.getElementById('commissionMonthly').textContent = formatCurrency(valorMensalComissao);
-        document.getElementById('commissionAnnual').textContent = formatCurrency(valorAnualComissao);
-        document.getElementById('savingsValue').textContent = formatCurrency(economiaAnual);
-        
-        const savingsElement = document.getElementById('savingsValue');
-        if (economiaAnual < 0) {
-          savingsElement.style.color = '#ff6b6b';
-        } else {
-          savingsElement.style.color = '#3fea90';
-        }
+    });
+    
+    // Formatar o valor ao perder o foco e recalcular
+    taxaPercentual.addEventListener('change', function() {
+      this.value = parseFloat(this.value).toFixed(1);
+      calcularValorVariavel();
+      calcularValorBase();
+    });
+    
+    // Recalcular quando usar as setas
+    taxaPercentual.addEventListener('input', function() {
+      calcularValorVariavel();
+      calcularValorBase();
+    });
+  }
+  
+  // Configuração para o campo de valor fixo
+  const valorFixo = document.getElementById('valor-fixo');
+  if (valorFixo) {
+    valorFixo.addEventListener('keydown', function(e) {
+      // Permitir apenas as teclas de seta, tab, etc.
+      if (e.key !== 'ArrowUp' && e.key !== 'ArrowDown' && 
+          e.key !== 'Tab' && e.key !== 'Enter') {
+        e.preventDefault();
       }
-      
-      document.getElementById('patrimonio').addEventListener('input', calculateFees);
-      document.getElementById('patrimonio').addEventListener('change', calculateFees);
-      
-      window.addEventListener('load', calculateFees);
+    });
+    
+    // Atualizar os valores quando o valor fixo mudar
+    valorFixo.addEventListener('change', calcularValorBase);
+    valorFixo.addEventListener('input', calcularValorBase);
+  }
+  
+  // Calcula os valores iniciais
+  calcularValorVariavel();
+  calcularValorBase();
+});
     });
   </script>
 </body>
