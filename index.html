@@ -1156,6 +1156,114 @@
       background-color: #f44336;
     }
 
+    /* Estilos para o indicador de rentabilidade */
+.rentabilidade-indicator {
+  position: absolute;
+  top: 15px;
+  right: 20px;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(30, 30, 30, 0.8);
+  cursor: pointer;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  z-index: 5;
+  transition: all 0.2s ease;
+}
+
+.rentabilidade-indicator:hover {
+  transform: scale(1.1);
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.3);
+}
+
+.perfil-conservador .rentabilidade-indicator {
+  border: 2px solid #3a86ff;
+}
+
+.perfil-moderado .rentabilidade-indicator {
+  border: 2px solid #4caf50;
+}
+
+.perfil-arrojado .rentabilidade-indicator {
+  border: 2px solid #ff9800;
+}
+
+.perfil-agressivo .rentabilidade-indicator {
+  border: 2px solid #f44336;
+}
+
+.rentabilidade-icon {
+  width: 16px;
+  height: 16px;
+}
+
+.rentabilidade-popup {
+  position: absolute;
+  top: 0;
+  right: 38px;
+  background-color: rgba(20, 20, 20, 0.9);
+  color: white;
+  padding: 4px 8px;
+  border-radius: 5px;
+  font-size: 0.85rem;
+  font-weight: bold;
+  white-space: nowrap;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateX(10px);
+  transition: all 0.3s ease;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+  z-index: 6;
+  height: 28px;
+  display: flex;
+  align-items: center;
+}
+
+.rentabilidade-popup.active {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(0);
+}
+
+.perfil-conservador .rentabilidade-popup {
+  border-left: 3px solid #3a86ff;
+}
+
+.perfil-moderado .rentabilidade-popup {
+  border-left: 3px solid #4caf50;
+}
+
+.perfil-arrojado .rentabilidade-popup {
+  border-left: 3px solid #ff9800;
+}
+
+.perfil-agressivo .rentabilidade-popup {
+  border-left: 3px solid #f44336;
+}
+
+.rentabilidade-value {
+  font-weight: bold;
+}
+
+.perfil-conservador .rentabilidade-value {
+  color: #3a86ff;
+}
+
+.perfil-moderado .rentabilidade-value {
+  color: #4caf50;
+}
+
+.perfil-arrojado .rentabilidade-value {
+  color: #ff9800;
+}
+
+.perfil-agressivo .rentabilidade-value {
+  color: #f44336;
+}
+
         /* Estilos específicos do Slide 6 */
     #slide6 {
       background: linear-gradient(rgba(10, 10, 10, 0.9), rgba(10, 10, 10, 0.9)), 
@@ -2055,6 +2163,7 @@
         <div class="indicator" data-slide="5"></div>
         <div class="indicator" data-slide="6"></div>
         <div class="indicator" data-slide="7"></div>
+        <div class="indicator" data-slide="8"></div>
       </div>
     </div>
     
@@ -2071,7 +2180,7 @@
       <h2>Minha Trajetória</h2>
       <p>Ao longo de 6 anos, construí uma sólida experiência em auditoria financeira, trabalhando nos maiores escritórios do país e desenvolvendo um olhar crítico para estratégias de investimento e gestão patrimonial.</p>
       <p>Após esse período, tive a oportunidade de atuar na maior empresa de consultoria financeira do Brasil, onde aprimorei meu conhecimento em planejamento patrimonial personalizado e estratégias de investimento alinhadas a objetivos de vida.</p>
-      <p>Em 2024, decidi empreender e fundei a GMS Consultoria, com a missão de transformar jovens investidores em pessoas financeiramente livres através de planejamento personalizado e acompanhamento constante.</p>
+      <p>Em 2024, decidi empreender e fundei a GMS Consultoria, com a missão de transformar os meus clientes em pessoas financeiramente livres através de planejamento personalizado e acompanhamento constante.</p>
     </div>
     
     <div class="stats-container">
@@ -2118,6 +2227,7 @@
         <div class="indicator" data-slide="5"></div>
         <div class="indicator" data-slide="6"></div>
         <div class="indicator" data-slide="7"></div>
+        <div class="indicator" data-slide="8"></div>
       </div>
     </div>
     
@@ -2921,6 +3031,7 @@
         <div class="indicator active" data-slide="5"></div>
         <div class="indicator" data-slide="6"></div>
         <div class="indicator" data-slide="7"></div>
+        <div class="indicator" data-slide="8"></div>
       </div>
     </div>
 
@@ -3066,7 +3177,16 @@
       
       <div class="perfis-container">
         <!-- Perfil Conservador -->
-        <div class="perfil-card perfil-conservador active">
+        <div class="perfil-card perfil-conservador active"><!-- Indicador de rentabilidade para o perfil Conservador -->
+          <div class="rentabilidade-indicator" onclick="toggleRentabilidade(this)">
+            <div class="rentabilidade-popup">
+              <span class="rentabilidade-value">11,5% a.a.</span>
+            </div>
+            <svg class="rentabilidade-icon" viewBox="0 0 24 24" fill="none" stroke="#3a86ff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>
+            </svg>
+          </div>
+          
           <div class="perfil-header">
             <h3 class="perfil-title conservador">Perfil Conservador</h3>
             <p class="perfil-description">Prioriza preservação de capital com baixa volatilidade. Foco em renda fixa e baixa exposição ao risco.</p>
@@ -3107,6 +3227,15 @@
         
         <!-- Perfil Moderado -->
         <div class="perfil-card perfil-moderado">
+          <!-- Indicador de rentabilidade para o perfil Moderado -->
+          <div class="rentabilidade-indicator" onclick="toggleRentabilidade(this)">
+            <div class="rentabilidade-popup">
+              <span class="rentabilidade-value">14,3% a.a.</span>
+            </div>
+            <svg class="rentabilidade-icon" viewBox="0 0 24 24" fill="none" stroke="#4caf50" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>
+            </svg>
+          </div>
           <div class="perfil-header">
             <h3 class="perfil-title moderado">Perfil Moderado</h3>
             <p class="perfil-description">Equilibra segurança e rentabilidade. Diversificação moderada com exposição controlada a ativos de risco.</p>
@@ -3213,6 +3342,15 @@
         
         <!-- Perfil Arrojado -->
         <div class="perfil-card perfil-arrojado">
+                    <!-- Indicador de rentabilidade para o perfil Arrojado -->
+          <div class="rentabilidade-indicator" onclick="toggleRentabilidade(this)">
+            <div class="rentabilidade-popup">
+              <span class="rentabilidade-value">14,9% a.a.</span>
+            </div>
+            <svg class="rentabilidade-icon" viewBox="0 0 24 24" fill="none" stroke="#ff9800" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>
+            </svg>
+          </div>
           <div class="perfil-header">
             <h3 class="perfil-title arrojado">Perfil Arrojado</h3>
             <p class="perfil-description">Visa retornos superiores aceitando maior volatilidade. Exposição significativa a ativos de maior risco.</p>
@@ -3319,6 +3457,15 @@
         
         <!-- Perfil Agressivo -->
         <div class="perfil-card perfil-agressivo">
+          <!-- Indicador de rentabilidade para o perfil Agressivo -->
+          <div class="rentabilidade-indicator" onclick="toggleRentabilidade(this)">
+            <div class="rentabilidade-popup">
+              <span class="rentabilidade-value">15% a.a.</span>
+            </div>
+            <svg class="rentabilidade-icon" viewBox="0 0 24 24" fill="none" stroke="#f44336" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>
+            </svg>
+          </div>
           <div class="perfil-header">
             <h3 class="perfil-title agressivo">Perfil Agressivo</h3>
             <p class="perfil-description">Busca maiores retornos aceitando maior volatilidade. Maior exposição à renda variável e ativos alternativos.</p>
@@ -3465,6 +3612,7 @@
         <div class="indicator" data-slide="5"></div>
         <div class="indicator active" data-slide="6"></div>
         <div class="indicator" data-slide="7"></div>
+        <div class="indicator" data-slide="8"></div>
       </div>
     </div>
     
@@ -3645,8 +3793,8 @@
     </div>
   </div>
 
-  <!-- SLIDE 7: Próximos Passos -->
-  <div class="slide" id="slide7">
+  <!-- SLIDE 8: Próximos Passos -->
+  <div class="slide" id="slide8">
     <div class="navigation">
       <img src="logo.png" alt="GMS Consultoria" class="nav-logo">
       
@@ -3657,7 +3805,8 @@
         <div class="indicator" data-slide="4"></div>
         <div class="indicator" data-slide="5"></div>
         <div class="indicator" data-slide="6"></div>
-        <div class="indicator active" data-slide="7"></div>
+        <div class="indicator" data-slide="7"></div>
+        <div class="indicator active" data-slide="8"></div>
       </div>
     </div>
 
@@ -3743,8 +3892,8 @@
     </div>
   </div>
 
-  <!-- SLIDE 8: Calculadora Comparativa -->
-  <div class="slide" id="slide8">
+    <!-- SLIDE 7: Calculadora Comparativa -->
+  <div class="slide" id="slide7">
   <div class="navigation">
     <img src="logo.png" alt="GMS Consultoria" class="nav-logo">
     
@@ -3755,13 +3904,13 @@
       <div class="indicator" data-slide="4"></div>
       <div class="indicator" data-slide="5"></div>
       <div class="indicator" data-slide="6"></div>
-      <div class="indicator" data-slide="7"></div>
-      <div class="indicator active" data-slide="8"></div>
+      <div class="indicator active" data-slide="7"></div>
+      <div class="indicator" data-slide="8"></div>
+    
     </div>
   </div>
 
   <div class="calculator-section">
-    <h3 class="input-title">Simule os custos de acordo com seu patrimônio</h3>
     
     <div class="input-container">
       <div class="input-wrapper fixed-value-wrapper" style="width: 90px; max-width: 40%; margin-right: 10px;">
@@ -3908,6 +4057,22 @@
       </div>
     </div>
   </div>
+  <div class="navigation-buttons">
+  <button class="nav-button prev-slide" id="prevSlide7">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M19 12H5"></path>
+      <path d="M12 19l-7-7 7-7"></path>
+    </svg>
+    Anterior
+  </button>
+  <button class="nav-button next-slide" id="nextSlide7">
+    Próximo
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M5 12h14"></path>
+      <path d="M12 5l7 7-7 7"></path>
+    </svg>
+  </button>
+</div>
 </div>
   
   <script>
@@ -4074,8 +4239,18 @@
     });
     
     // Slide 7 - Apenas o botão Fim
-    document.getElementById('fimSlide').addEventListener('click', function() {
+    document.getElementById('prevSlide7').addEventListener('click', function() {
+      navigateToSlide(6);
+    });
+
+    document.getElementById('nextSlide7').addEventListener('click', function() {
       navigateToSlide(8);
+    });
+
+
+    // Botão Fim no Slide 8 - redireciona para URL externa em nova aba
+    document.getElementById('fimSlide').addEventListener('click', function() {
+      window.open('https://app.dashplan.com.br/sa_app/1736468157062x479537789646667800', '_blank');
     });
     
     // #INDICADORES DE SLIDE
@@ -4462,50 +4637,51 @@
       
       lossSlider.addEventListener('input', updateGraph);
       updateGraph();
-      // FUNCIONALIDADE DO SLIDE 7 - Card Slider
-      const cards7 = document.querySelectorAll('#slide7 .benefit-card');
-      const indicators7 = document.querySelectorAll('#slide7 .card-indicator');
-      const prevBtn7 = document.querySelector('#slide7 .card-nav.prev');
-      const nextBtn7 = document.querySelector('#slide7 .card-nav.next');
+
+      // FUNCIONALIDADE DO SLIDE 8 - Card Slider
+      const cards8 = document.querySelectorAll('#slide8 .benefit-card');
+      const indicators8 = document.querySelectorAll('#slide8 .card-indicator');
+      const prevBtn8 = document.querySelector('#slide8 .card-nav.prev');
+      const nextBtn8 = document.querySelector('#slide8 .card-nav.next');
       let currentCardIndex = 0;
 
       function showCard(index) {
-        cards7.forEach(card => {
+        cards8.forEach(card => {
           card.classList.remove('active');
         });
         
-        indicators7.forEach(indicator => {
+        indicators8.forEach(indicator => {
           indicator.classList.remove('active');
         });
         
-        cards7[index].classList.add('active');
-        indicators7[index].classList.add('active');
+        cards8[index].classList.add('active');
+        indicators8[index].classList.add('active');
         currentCardIndex = index;
       }
 
-      if (prevBtn7) {
-        prevBtn7.addEventListener('click', () => {
+      if (prevBtn8) {
+        prevBtn8.addEventListener('click', () => {
           let newIndex = currentCardIndex - 1;
-          if (newIndex < 0) newIndex = cards7.length - 1;
+          if (newIndex < 0) newIndex = cards8.length - 1;
           showCard(newIndex);
         });
       }
 
-      if (nextBtn7) {
-        nextBtn7.addEventListener('click', () => {
+      if (nextBtn8) {
+        nextBtn8.addEventListener('click', () => {
           let newIndex = currentCardIndex + 1;
-          if (newIndex >= cards7.length) newIndex = 0;
+          if (newIndex >= cards8.length) newIndex = 0;
           showCard(newIndex);
         });
       }
 
-      indicators7.forEach((indicator, index) => {
+      indicators8.forEach((indicator, index) => {
         indicator.addEventListener('click', () => {
           showCard(index);
         });
       });
       
-      // FUNCIONALIDADE DO SLIDE 8 - Calculadora
+      // FUNCIONALIDADE DO SLIDE 7 - Calculadora
       // Formatador de valores monetários
 function formatCurrency(value) {
   return new Intl.NumberFormat('pt-BR', {
@@ -4604,6 +4780,42 @@ window.addEventListener('DOMContentLoaded', function() {
   calcularValorBase();
 });
     });
+    // Função para mostrar/ocultar o popup de rentabilidade
+function toggleRentabilidade(element) {
+  const popup = element.querySelector('.rentabilidade-popup');
+  
+  // Certifica-se que não exista texto adicional antes do valor da rentabilidade
+  const valueElement = popup.querySelector('.rentabilidade-value');
+  if (valueElement && valueElement.parentNode.childNodes.length > 1) {
+    // Remove qualquer texto que não esteja dentro da tag span
+    Array.from(popup.childNodes).forEach(node => {
+      if (node.nodeType === Node.TEXT_NODE) {
+        popup.removeChild(node);
+      }
+    });
+  }
+  
+  // Fecha todos os popups primeiro
+  document.querySelectorAll('.rentabilidade-popup').forEach(p => {
+    if (p !== popup) {
+      p.classList.remove('active');
+    }
+  });
+  
+  // Alterna o estado do popup clicado
+  popup.classList.toggle('active');
+  
+  // Adiciona um listener para fechar o popup quando clicar fora dele
+  document.addEventListener('click', function closePopup(e) {
+    if (!element.contains(e.target)) {
+      popup.classList.remove('active');
+      document.removeEventListener('click', closePopup);
+    }
+  });
+  
+  // Impede que o evento se propague
+  event.stopPropagation();
+}
   </script>
 </body>
 </html>
